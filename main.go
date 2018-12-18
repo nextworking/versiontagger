@@ -107,7 +107,7 @@ func getGitTag(d string) string {
 	cmd.Dir = d
 	out, err := cmd.Output()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		fmt.Fprintf(os.Stderr, "error getting git tag: %v\n", err)
 		os.Exit(1)
 	}
 
