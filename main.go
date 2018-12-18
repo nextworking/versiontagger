@@ -45,8 +45,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	metaVer := getMetadataVersion("/Users/bas/Documents/Development/puppet/modules/node_red/metadata.json")
-	gitTag:= getGitTag("/Users/bas/Documents/Development/puppet/modules/node_red")
+	metaVer := getMetadataVersion("./metadata.json")
+	gitTag:= getGitTag("./")
 
 
 
@@ -54,7 +54,7 @@ func main() {
 		GitVer, err = semver.Parse(gitTag)
 	} else {
 		GitVer = metaVer
-		setGitTag("/Users/bas/Documents/Development/puppet/modules/node_red", metaVer.String())
+		setGitTag("./", metaVer.String())
 	}
 
 
