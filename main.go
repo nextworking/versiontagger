@@ -45,7 +45,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := os.Stat("./git"); os.IsNotExist(err) {
+	if _, err := os.Stat("./git/config"); os.IsNotExist(err) {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
@@ -105,10 +105,6 @@ func getMetadataVersion(f string) semver.Version {
 
 func getGitTag(d string) string {
 
-	//var gitVersion semver.Version
-
-	//gitVersion, err := semver.NewPRVersion("0.0.1")
-
 	cmd := exec.Command("git", "tag")
 	cmd.Dir = d
 	out, err := cmd.Output()
@@ -122,8 +118,6 @@ func getGitTag(d string) string {
 
 func setGitTag(d string, ver string) string {
 
-	//cmdOptions := fmt.Sprintf("tag -a" %v -m \"gitlab ci tag\"", ver)
-    //fmt.Println(cmdOptions)
 	cmd := exec.Command("git", "tag", "-a", ver, "-m", "\"gitlab ci tag\"")
 	cmd.Dir = d
 	out, err := cmd.Output()
