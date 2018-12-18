@@ -128,7 +128,7 @@ func setGitTag(d string, ver string) string {
 	}
 
 
-	cmdPushTag := exec.Command("bash", "-c", "git push --tags")
+	cmdPushTag := exec.Command("/bin/bash", "-c", "git push --tags")
 	cmdPushTag.Dir = d
 	outPushTag, err := cmdPushTag.Output()
 	if err != nil {
