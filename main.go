@@ -41,7 +41,8 @@ var GitVer semver.Version
 func main() {
 
 	if _, err := os.Stat("./metadata.json"); os.IsNotExist(err) {
-		panic(err)
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
 	}
 
 	metaVer := getMetadataVersion("/Users/bas/Documents/Development/puppet/modules/node_red/metadata.json")
