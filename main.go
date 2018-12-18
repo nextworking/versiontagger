@@ -80,7 +80,7 @@ func main() {
 		}
 	} else if metaVer.Compare(GitVer) == 1 {
 		fmt.Println("metadata version > git tag. we are doing stuff now")
-        setGitTag("/Users/bas/Documents/Development/puppet/modules/node_red", metaVer.String())
+        setGitTag("./", metaVer.String())
 	}
 
 }
