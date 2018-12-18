@@ -121,12 +121,13 @@ func setGitTag(d string, ver string) string {
 
 	cmdTag := exec.Command("git", "tag", "-a", ver, "-m", "\"gitlab ci tag\"")
 	cmdTag.Dir = d
-	_, err := cmdTag.Output()
+	out, err := cmdTag.Output()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
 
+	/*
 	cmdPushTag := exec.Command("git", "push", "--tags")
 	cmdPushTag.Dir = d
 	outPushTag, err := cmdPushTag.Output()
@@ -134,7 +135,7 @@ func setGitTag(d string, ver string) string {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
+	*/
 
-
-	return string(outPushTag)
+	return string(out)
 }
