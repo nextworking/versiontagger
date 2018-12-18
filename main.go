@@ -83,13 +83,13 @@ func getMetadataVersion(f string) semver.Version {
 
 	file, err := ioutil.ReadFile(f)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		fmt.Fprintf(os.Stderr, "error in metadata.json: %v\n", err)
 		os.Exit(1)
 	}
 	json.Unmarshal(file, &MyJson)
 	metaVer, err := semver.Parse(MyJson.Version)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		fmt.Fprintf(os.Stderr, "error in metadata.json: %v\n", err)
 		os.Exit(1)
 	}
 	return metaVer
