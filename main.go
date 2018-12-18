@@ -76,6 +76,7 @@ func main() {
 			fmt.Println("Probably WIP and/or no git tag. No actions taken")
 		} else {
 			fmt.Println("The metadata version is lower than the git tag. This must be fixed")
+			os.Exit(1)
 		}
 	} else if metaVer.Compare(GitVer) == 1 {
 		fmt.Println("metadata version > git tag. we are doing stuff now")
