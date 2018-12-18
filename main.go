@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/blang/semver"
 	"io/ioutil"
+	"os"
 	"os/exec"
 	"strings"
 )
@@ -38,6 +39,10 @@ var GitVer semver.Version
 
 
 func main() {
+
+	if _, err := os.Stat("./metadata.json"); os.IsNotExist(err) {
+		panic(err)
+	}
 
 	metaVer := getMetadataVersion("/Users/bas/Documents/Development/puppet/modules/node_red/metadata.json")
 	gitTag:= getGitTag("/Users/bas/Documents/Development/puppet/modules/node_red")
