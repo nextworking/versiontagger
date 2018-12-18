@@ -89,7 +89,8 @@ func getMetadataVersion(f string) semver.Version {
 	json.Unmarshal(file, &MyJson)
 	metaVer, err := semver.Parse(MyJson.Version)
 	if err != nil {
-		panic(err)
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
 	}
 	return metaVer
 
@@ -104,12 +105,11 @@ func getGitTag(d string) string {
 
 	cmd := exec.Command("git", "tag")
 	cmd.Dir = d
-	out, _ := cmd.Output()
-
-	//if out == []{
-	//	gitVersion =
-	//}
-	//	gitVersion, _ =  semver.Parse(strings.TrimSuffix(string(out), "\n"))
+	out, err := cmd.Output()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
+	}
 
 	return strings.TrimRight(string(out), "\n")
 }
@@ -122,8 +122,8 @@ func setGitTag(d string, ver string) string {
 	cmd.Dir = d
 	out, err := cmd.Output()
 	if err != nil {
-		fmt.Printf("error: %v\n", err)
-		panic(err)
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
 	}
 
 	return string(out)
