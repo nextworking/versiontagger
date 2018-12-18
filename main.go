@@ -106,7 +106,7 @@ func getMetadataVersion(f string) semver.Version {
 
 func getGitTag(d string) string {
 
-	cmd := exec.Command("git", "tag")
+	cmd := exec.Command("git", "describe", "--abbrev=0")
 	cmd.Dir = d
 	out, err := cmd.Output()
 	if err != nil {
