@@ -45,6 +45,12 @@ func main() {
 		os.Exit(1)
 	}
 
+	if _, err := os.Stat("./git"); os.IsNotExist(err) {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
+	}
+
+
 	metaVer := getMetadataVersion("./metadata.json")
 	gitTag:= getGitTag("./")
 
